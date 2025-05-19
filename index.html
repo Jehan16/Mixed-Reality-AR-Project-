@@ -8,11 +8,48 @@
     <a-scene embedded arjs>
       <a-assets>
         <a-asset-item id="robot" src="robot_character.glb"></a-asset-item>
+        <a-asset-item id="model1" src="polar_bear.glb"></a-asset-item>
+        <a-asset-item id="model2" src="shark.glb"></a-asset-item>
+        <a-asset-item id="model3" src="wolf.glb"></a-asset-item>
       </a-assets>
 
-      <a-marker type="pattern" url="IT21804342.patt">
+      <!-- Marker : Model -->
+      <!-- <a-marker type="pattern" url="IT21804342.patt">
         <a-entity
           gltf-model="#robot"
+          animation-mixer
+          position="0 0 0"
+          scale="0.2 0.2 0.2"
+          rotation="0 180 0"
+        ></a-entity>
+      </a-marker> -->
+
+      <!-- Marker : Model -->
+      <a-marker type="pattern" url="IT21804342.patt">
+        <a-entity
+          gltf-model="#model1"
+          animation-mixer
+          position="0 0 0"
+          scale="0.2 0.2 0.2"
+          rotation="0 180 0"
+        ></a-entity>
+      </a-marker>
+
+      <!-- Marker : Model -->
+      <a-marker type="pattern" url="IT21814242.patt">
+        <a-entity
+          gltf-model="#model2"
+          animation-mixer
+          position="0 0 0"
+          scale="0.2 0.2 0.2"
+          rotation="0 180 0"
+        ></a-entity>
+      </a-marker>
+
+      <!-- Marker : Model -->
+      <a-marker type="pattern" url="IT21828966.patt">
+        <a-entity
+          gltf-model="#model3"
           animation-mixer
           position="0 0 0"
           scale="0.2 0.2 0.2"
