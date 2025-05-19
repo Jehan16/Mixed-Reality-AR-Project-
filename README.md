@@ -19,50 +19,26 @@ This project demonstrates a web-based Augmented Reality (AR) experience using A-
 
 git clone https://github.com/your-username/ar-multi-marker-app.git
 
-shell
-Copy
-Edit
-
 ### 2. Install Local Web Server (with HTTPS support)
 
 Install globally:
 npm install -g local-web-server
 
-perl
-Copy
-Edit
-
 Or use alternative like:
 npm install -g lite-server
-
-pgsql
-Copy
-Edit
 
 ### 3. Start the server (with HTTPS)
 
 For `local-web-server`:
 ws --https
 
-go
-Copy
-Edit
-
 For `lite-server` (recommended for live reload):
 lite-server
-
-yaml
-Copy
-Edit
 
 ### 4. Open the URL on your mobile
 
 Visit:
 https://<your-local-ip>:8000
-
-yaml
-Copy
-Edit
 
 > ⚠️ Mobile and PC must be connected to the same Wi-Fi.
 
@@ -82,10 +58,6 @@ Edit
 ├── marker4.patt # Custom marker pattern 4
 ├── sound.mp3 # Optional background sound
 └── README.md
-
-yaml
-Copy
-Edit
 
 ---
 
