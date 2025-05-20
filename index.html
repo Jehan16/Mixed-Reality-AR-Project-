@@ -38,6 +38,7 @@
       <!-- Marker 1 -->
       <a-marker type="pattern" url="IT21804342.patt" id="marker1">
         <a-entity
+          id="model1Entity"
           gltf-model="#model1"
           animation-mixer
           scale="0.6 0.6 0.6"
@@ -49,6 +50,7 @@
       <!-- Marker 2 -->
       <a-marker type="pattern" url="IT21814242.patt" id="marker2">
         <a-entity
+          id="model2Entity"
           gltf-model="#model2"
           animation-mixer
           scale="0.5 0.5 0.5"
@@ -60,6 +62,7 @@
       <!-- Marker 3 -->
       <a-marker type="pattern" url="IT21828966.patt" id="marker3">
         <a-entity
+          id="model3Entity"
           gltf-model="#model3"
           animation-mixer
           scale="0.02 0.02 0.02"
@@ -73,43 +76,41 @@
 
     <script>
       let audioReady = false;
+      let currentModelId = null;
+      let angle = 0;
 
-      // Wait for user interaction to unlock sound
+      // Unlock sound
       document.addEventListener("click", () => {
         if (!audioReady) {
-          document.getElementById("sound1").play();
-          document.getElementById("sound1").pause();
-          document.getElementById("sound2").play();
-          document.getElementById("sound2").pause();
-          document.getElementById("sound3").play();
-          document.getElementById("sound3").pause();
+          ["sound1", "sound2", "sound3"].forEach((id) => {
+            const s = document.getElementById(id);
+            s.play();
+            s.pause();
+          });
           audioReady = true;
         }
       });
 
-      const setupMarkerAudio = (markerId, soundId) => {
+      function setupMarker(markerId, soundId, modelEntityId) {
         const marker = document.querySelector(markerId);
         const sound = document.getElementById(soundId);
 
         marker.addEventListener("markerFound", () => {
+          currentModelId = modelEntityId;
           if (audioReady) sound.play();
         });
 
         marker.addEventListener("markerLost", () => {
+          if (currentModelId === modelEntityId) currentModelId = null;
           sound.pause();
           sound.currentTime = 0;
         });
-      };
+      }
 
-      setupMarkerAudio("#marker1", "sound1");
-      setupMarkerAudio("#marker2", "sound2");
-      setupMarkerAudio("#marker3", "sound3");
-    </script>
+      setupMarker("#marker1", "sound1", "model1Entity");
+      setupMarker("#marker2", "sound2", "model2Entity");
+      setupMarker("#marker3", "sound3", "model3Entity");
 
-    <!-- JS: Rotate model on button click -->
-    <script>
-      let currentModelId = null;
-      let angle = 0;
       document.getElementById("rotateBtn").addEventListener("click", () => {
         if (currentModelId) {
           angle += 45;
