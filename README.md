@@ -17,7 +17,7 @@ This project demonstrates a web-based Augmented Reality (AR) experience using A-
 
 ### 1. Clone / Download this project
 
-git clone https://github.com/your-username/ar-multi-marker-app.git
+git clone https://github.com/Jehan16/Mixed-Reality-AR-Project-.git
 
 ### 2. Install Local Web Server (with HTTPS support)
 
