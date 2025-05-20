@@ -3,61 +3,120 @@
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.js"></script>
+
+    <style>
+      #rotateBtn {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        padding: 12px 24px;
+        background-color: #e91e63;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+    </style>
   </head>
   <body style="margin: 0; overflow: hidden">
+    <!-- Rotate Button -->
+    <button id="rotateBtn">Rotate Model</button>
+
     <a-scene embedded arjs>
       <a-assets>
-        <a-asset-item id="robot" src="robot_character.glb"></a-asset-item>
-        <a-asset-item id="model1" src="polar_bear.glb"></a-asset-item>
-        <a-asset-item id="model2" src="shark.glb"></a-asset-item>
+        <a-asset-item id="model1" src="cow.glb"></a-asset-item>
+        <a-asset-item id="model2" src="chicken.glb"></a-asset-item>
         <a-asset-item id="model3" src="wolf.glb"></a-asset-item>
+
+        <audio id="sound1" src="sound3.mp3"></audio>
+        <audio id="sound2" src="sound2.mp3"></audio>
+        <audio id="sound3" src="sound1.mp3"></audio>
       </a-assets>
 
-      <!-- Marker : Model -->
-      <a-marker type="pattern" url="IT21804342.patt">
-        <a-entity
-          gltf-model="#robot"
-          animation-mixer
-          position="0 0 0"
-          scale="0.2 0.2 0.2"
-          rotation="0 180 0"
-        ></a-entity>
-      </a-marker>
-
-      <!-- Marker : Model -->
-      <!-- <a-marker type="pattern" url="IT21804342.patt">
+      <!-- Marker 1 -->
+      <a-marker type="pattern" url="IT21804342.patt" id="marker1">
         <a-entity
           gltf-model="#model1"
           animation-mixer
-          position="0 0 -1"
-          scale="3 3 3"
-          rotation="0 90 0"
-        ></a-entity>
-      </a-marker> -->
-
-      <!-- Marker : Model -->
-      <a-marker type="pattern" url="IT21814242.patt">
-        <a-entity
-          gltf-model="#model2"
-          animation-mixer
-          position="0 0 -1"
-          scale="0.1 0.1 0.1"
-          rotation="0 90 0"
+          scale="0.6 0.6 0.6"
+          position="0 0 0"
+          rotation="0 0 0"
         ></a-entity>
       </a-marker>
 
-      <!-- Marker : Model -->
-      <a-marker type="pattern" url="IT21828966.patt">
+      <!-- Marker 2 -->
+      <a-marker type="pattern" url="IT21814242.patt" id="marker2">
+        <a-entity
+          gltf-model="#model2"
+          animation-mixer
+          scale="0.5 0.5 0.5"
+          position="0 0 0"
+          rotation="0 0 0"
+        ></a-entity>
+      </a-marker>
+
+      <!-- Marker 3 -->
+      <a-marker type="pattern" url="IT21828966.patt" id="marker3">
         <a-entity
           gltf-model="#model3"
           animation-mixer
-          position="0 0 -1"
-          scale="3 3 3"
-          rotation="0 90 0"
+          scale="0.02 0.02 0.02"
+          position="0 0 0"
+          rotation="0 0 0"
         ></a-entity>
       </a-marker>
 
       <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+      let audioReady = false;
+
+      // Wait for user interaction to unlock sound
+      document.addEventListener("click", () => {
+        if (!audioReady) {
+          document.getElementById("sound1").play();
+          document.getElementById("sound1").pause();
+          document.getElementById("sound2").play();
+          document.getElementById("sound2").pause();
+          document.getElementById("sound3").play();
+          document.getElementById("sound3").pause();
+          audioReady = true;
+        }
+      });
+
+      const setupMarkerAudio = (markerId, soundId) => {
+        const marker = document.querySelector(markerId);
+        const sound = document.getElementById(soundId);
+
+        marker.addEventListener("markerFound", () => {
+          if (audioReady) sound.play();
+        });
+
+        marker.addEventListener("markerLost", () => {
+          sound.pause();
+          sound.currentTime = 0;
+        });
+      };
+
+      setupMarkerAudio("#marker1", "sound1");
+      setupMarkerAudio("#marker2", "sound2");
+      setupMarkerAudio("#marker3", "sound3");
+    </script>
+
+    <!-- JS: Rotate model on button click -->
+    <script>
+      let currentModelId = null;
+      let angle = 0;
+      document.getElementById("rotateBtn").addEventListener("click", () => {
+        if (currentModelId) {
+          angle += 45;
+          const model = document.getElementById(currentModelId);
+          model.setAttribute("rotation", `0 ${angle} 0`);
+        }
+      });
+    </script>
   </body>
 </html>
