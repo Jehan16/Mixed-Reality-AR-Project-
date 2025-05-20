@@ -86,7 +86,7 @@ Generate `.patt` files using the [AR.js Marker Generator](https://jeromeetienne.
 
 ## 📸 Demo
 
-> Coming soon — include screenshots or a Loom video link here.
+> Coming soon — include Loom video link here.
 
 ---
 
