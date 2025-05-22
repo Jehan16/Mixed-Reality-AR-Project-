@@ -17,35 +17,35 @@ This project demonstrates a web-based Augmented Reality (AR) experience using A-
 
 ### 1. Clone / Download this project
 
-git clone https://github.com/Jehan16/Mixed-Reality-AR-Project-.git
+```git clone https://github.com/Jehan16/Mixed-Reality-AR-Project-.git```
 
 ### 2. Install Local Web Server (with HTTPS support)
 
 Install globally:
-npm install -g local-web-server
+```npm install -g local-web-server```
 
 Or use alternative like:
-npm install -g lite-server
+```npm install -g lite-server```
 
 ### 3. Start the server (with HTTPS)
 
 For `local-web-server`:
-ws --https
+```ws --https```
 
 For `lite-server` (recommended for live reload):
-lite-server
+```lite-server```
 
 ### 4. Open the URL on your mobile
 
 Visit:
-https://<your-local-ip>:8000
+```https://<your-local-ip>:8000```
 
 > ⚠️ Mobile and PC must be connected to the same Wi-Fi.
 
 ---
 
 ## 📁 File Structure
-
+```
 /
 ├── index.html # Main AR scene with 4 markers + models
 ├── model1.glb # GLB animated model 1
@@ -58,7 +58,7 @@ https://<your-local-ip>:8000
 ├── marker4.patt # Custom marker pattern 4
 ├── sound.mp3 # Optional background sound
 └── README.md
-
+```
 ---
 
 ## 🖨️ Marker Setup
@@ -81,12 +81,6 @@ Generate `.patt` files using the [AR.js Marker Generator](https://jeromeetienne.
 - Use `.glb` format for animation support and better performance.
 - Always run with HTTPS for full camera access on mobile.
 - Prefer lightweight, low-poly models for smoother rendering.
-
----
-
-## 📸 Demo
-
-> Coming soon — include Loom video link here.
 
 ---
 
